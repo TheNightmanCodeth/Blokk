@@ -44,7 +44,7 @@ func verify(val: String) -> Bool {
     let array: NSMutableArray = topLevel["__kCMFBlockListStoreArrayKey"] as! NSMutableArray
     array.forEach { e in
         let element: NSMutableDictionary = e as! NSMutableDictionary
-        if (element["__kCMFItemEmailUnformattedKey"] as! String == val) {
+        if (element["__kCMFItemEmailUnformattedKey"] as? String == val) {
             result = true
         }
     }
