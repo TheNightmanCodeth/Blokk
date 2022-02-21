@@ -19,7 +19,7 @@ func addToBlockList(toBlock: String) -> Bool {
         "__kCMFItemTypeKey": 1,
         "__kCMFItemVersionKey": 1
     ]
-    array.add(dictToAdd)
+    array.insert(dictToAdd, at: 0)
     writeToFile()
     return verify(val: toBlock)
 }
