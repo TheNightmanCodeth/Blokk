@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Blokk'),
     );
   }
 }
@@ -45,8 +45,11 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            TextField(
-              controller: addController,
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: TextField(
+                controller: addController,
+              ),
             ),
             TextButton(
               child: const Text("Submit"),
@@ -61,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ));
                 }
               },
-              ),
+            ),
           ],
         ),
       ),
@@ -71,7 +74,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<bool> _addToBlockList(String toAdd) async {
     bool toRet = false;
     try {
-      final bool result = await addChannel.invokeMethod('addToBlockList', {'toAdd': toAdd});
+      final bool result =
+          await addChannel.invokeMethod('addToBlockList', {'toAdd': toAdd});
       toRet = result;
     } on PlatformException catch (e) {
       print(e.message);

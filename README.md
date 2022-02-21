@@ -2,7 +2,7 @@
 
 A jailbreak app that brings back the ability to block alphanumeric senders (ie. email addresses).
 
-# Installing
+# Installing [![Codemagic build status](https://api.codemagic.io/apps/6213da6dff12ccf6a45b90ae/6213da6dff12ccf6a45b90ad/status_badge.svg)](https://codemagic.io/apps/6213da6dff12ccf6a45b90ae/6213da6dff12ccf6a45b90ad/latest_build)
 
 Until I package everything up into a `.deb`, this is the installation procedure:
 
