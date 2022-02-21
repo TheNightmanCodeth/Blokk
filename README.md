@@ -1,16 +1,16 @@
-# blokk
+# Blokk
 
-A new Flutter project.
+A jailbreak app that brings back the ability to block alphanumeric senders (ie. email addresses).
 
-## Getting Started
+# Installing
 
-This project is a starting point for a Flutter application.
+Until I package everything up into a `.deb`, this is the installation procedure:
 
-A few resources to get you started if this is your first Flutter project:
+- Copy `Blokk.app` from the releases section to `/Applications` on your jailbroken iPhone
+- SSH into the device or use `NewTerm` and run the following commands:
+  - `su` <- Enter your root password after this. It's `alpine` if you haven't changed it
+  - `chmod 6777 /Applications/Blokk.app/Blokk`
+  - `chown root:admin /Applications/Blokk.app/Blokk`
+- Respring/Run UICache
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Keep in mind you **will need to reboot after adding to the blocklist**
