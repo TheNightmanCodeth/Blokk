@@ -33,6 +33,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   static const addChannel = MethodChannel('me.jdiggity.blokk/add');
+  static const listChannel = MethodChannel('me.jdiggity.blokk/list');
   final addController = TextEditingController();
 
   @override
@@ -65,6 +66,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 }
               },
             ),
+            FutureBuilder(
+                future: _getCurrentBlockList(),
+                builder: (ctx, snap) {
+                  List<String> list = snap.data as List<String>;
+                  ScaffoldMessenger.of(ctx).showSnackBar(SnackBar(
+                    content: Text(list[0]),
+                  ));
+                  return ListView.builder(itemBuilder: (ctx, index) {
+                    String thisString = list[index];
+                    return ListTile(
+                      title: Text(thisString),
+                    );
+                  });
+                })
           ],
         ),
       ),
@@ -81,6 +96,18 @@ class _MyHomePageState extends State<MyHomePage> {
       print(e.message);
     }
 
+    return toRet;
+  }
+
+  Future<List<String>> _getCurrentBlockList() async {
+    List<String> toRet = List.empty();
+    try {
+      final List<String> result =
+          await listChannel.invokeListMethod('getBlockList') as List<String>;
+      toRet = result;
+    } on PlatformException catch (e) {
+      print(e.message);
+    }
     return toRet;
   }
 }

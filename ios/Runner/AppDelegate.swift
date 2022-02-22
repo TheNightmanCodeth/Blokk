@@ -13,17 +13,25 @@ import Flutter
       
       addToChannel.setMethodCallHandler({
           (call: FlutterMethodCall, result: @escaping FlutterResult) -> Void in
-          if let args = call.arguments as? Dictionary<String, Any>,
-             let toAdd = args["toAdd"] as? String {
-              self.receiveResult(result: result, toBlock: toAdd)
-          } else { result(false) }
+          if (call.method == "addToBlockList") {
+              if let args = call.arguments as? Dictionary<String, Any>,
+                 let toAdd = args["toAdd"] as? String {
+                  self.receiveAddToBlocklist(result: result, toBlock: toAdd)
+              } else { result(false) }
+          } else if (call.method == "getBlockList") {
+              self.receiveGetBlockList(result: result)
+          }
       })
     
     GeneratedPluginRegistrant.register(with: self)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
     
-    private func receiveResult(result: FlutterResult, toBlock: String) {
-        result(addToBlockList(toBlock: toBlock))
-    }
+  private func receiveAddToBlocklist(result: FlutterResult, toBlock: String) {
+    result(addToBlockList(toBlock: toBlock))
+  }
+    
+  private func receiveGetBlockList(result: FlutterResult) {
+    result(getList())
+  }
 }

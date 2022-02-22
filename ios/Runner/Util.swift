@@ -33,6 +33,20 @@ func removeFromBlockList(toRemove: String) {
     }
 }
 
+func getList() -> Array<String> {
+    var toRet: Array<String> = Array<String>()
+    let newDict = NSMutableDictionary(contentsOfFile: plistLocation)
+    let topLevel: NSMutableDictionary = newDict!["__kCMFBlockListStoreTopLevelKey"] as! NSMutableDictionary
+    let array: NSMutableArray = topLevel["__kCMFBlockListStoreArrayKey"] as! NSMutableArray
+    array.forEach { e in
+        let element: NSMutableDictionary = e as! NSMutableDictionary
+        if let string = element["__kCMFItemEmailUnformattedKey"] as? String {
+            toRet.append(string)
+        }
+    }
+    return toRet
+}
+
 func writeToFile() {
     dictionary?.write(toFile: plistLocation, atomically: true)
 }
